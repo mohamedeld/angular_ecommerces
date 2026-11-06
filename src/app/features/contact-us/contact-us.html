@@ -1,0 +1,120 @@
+<section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <span class="text-primary font-semibold uppercase tracking-wider text-sm"> Get in touch </span>
+
+    <h1 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Contact Us</h1>
+
+    <p class="text-gray-500 max-w-xl mx-auto">
+      Have a question or need help? We'd love to hear from you. Send us a message and we'll get back
+      to you.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Contact Information -->
+    <div class="bg-primary text-black rounded-2xl p-8 flex flex-col">
+      <h2 class="text-2xl font-bold mb-3">Let's talk</h2>
+
+      <p class="text-black mb-10">Feel free to reach out to us through any of these channels.</p>
+
+      <div class="space-y-8">
+        <div class="flex gap-4 items-start">
+          <div class="text-2xl">📧</div>
+          <div>
+            <h3 class="font-semibold">Email</h3>
+            <p class="text-black text-sm mt-1">support@example.com</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="text-2xl">📞</div>
+          <div>
+            <h3 class="font-semibold">Phone</h3>
+            <p class="textblack text-sm mt-1">+1 234 567 890</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="text-2xl">📍</div>
+          <div>
+            <h3 class="font-semibold">Address</h3>
+            <p class="text-black text-sm mt-1">123 Main Street, New York, USA</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-12">
+        <p class="text-white/60 text-sm">We usually respond within 24 hours.</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
+      @if (isSubmitted()) {
+        <div class="bg-green-50 text-green-700 p-4 rounded-lg mb-6">
+          Your message has been submitted successfully!
+        </div>
+      }
+
+      <h2 class="text-2xl font-bold mb-8">Send us a message</h2>
+
+      <form ((submit))="onSubmit($event)" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2"> Full Name </label>
+            <input
+              id="name"
+              type="text"
+              [formField]="contactForm.name"
+              placeholder="John Doe"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-primary"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2"> Email Address </label>
+            <input
+              id="email"
+              type="email"
+              [formField]="contactForm.email"
+              email
+              placeholder="john@example.com"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-primary"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="subject" class="block text-sm font-medium mb-2"> Subject </label>
+          <input
+            id="subject"
+            type="text"
+            [formField]="contactForm.subject"
+            placeholder="How can we help you?"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-primary"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium mb-2"> Message </label>
+          <textarea
+            id="message"
+            [formField]="contactForm.message"
+            rows="5"
+            placeholder="Write your message here..."
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-primary resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="contactForm().invalid()"
+          class="bg-primary text-black px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Send Message →
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

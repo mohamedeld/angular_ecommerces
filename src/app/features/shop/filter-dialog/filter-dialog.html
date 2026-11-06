@@ -15,7 +15,7 @@
       } @else if (brands.hasValue()) {
         <mat-selection-list #brandList>
           @for (brand of brands.value(); track brand.id) {
-            <mat-list-option [value]="brand.id">
+            <mat-list-option [value]="brand.name">
               {{ brand.name }}
             </mat-list-option>
           }
@@ -34,7 +34,7 @@
       } @else if (types.hasValue()) {
         <mat-selection-list #typesList>
           @for (type of types.value(); track type.id) {
-            <mat-list-option [value]="type.id">
+            <mat-list-option [value]="type.name">
               {{ type.name }}
             </mat-list-option>
           }

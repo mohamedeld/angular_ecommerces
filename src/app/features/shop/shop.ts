@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Products } from '../../services/products';
 import { Error } from '../../shared/error/error';
@@ -14,13 +14,15 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './shop.css',
   templateUrl: './shop.html',
 })
-export class Shop {
+export default class Shop {
   private readonly productsService = inject(Products);
   private dialogService = inject(MatDialog);
+  selectedBrands = signal<string[]>([]);
+  selectedTypes = signal<string[]>([]);
 
   brands = this.productsService.getBrands();
   types = this.productsService.getTypes();
-  productsResource = this.productsService.getProducts();
+  productsResource = this.productsService.getProducts(this.selectedBrands, this.selectedTypes);
 
   openFiltersDialog() {
     const dialogRef = this.dialogService.open(FilterDialog, {
@@ -33,7 +35,9 @@ export class Shop {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Selected filters:', result);
+        console.log('first', result);
+        this.selectedBrands.set(result.brandIds);
+        this.selectedTypes.set(result.typeIds);
       }
     });
   }

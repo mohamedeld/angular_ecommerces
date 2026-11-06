@@ -24,15 +24,17 @@
     />
   } @else {
     @if (productsResource.hasValue()) {
-      @for (product of productsResource.value(); track product.Name) {
-        <app-product-item [product]="product"></app-product-item>
+      @if (productsResource.value()?.length > 0) {
+        @for (product of productsResource.value(); track product.Name) {
+          <app-product-item [product]="product"></app-product-item>
+        }
+      } @else {
+        <app-empty-state
+          class="col-span-full"
+          title="No products found"
+          message="We couldn't find any products at the moment."
+        />
       }
-    } @else {
-      <app-empty-state
-        class="col-span-full"
-        title="No products found"
-        message="We couldn't find any products at the moment."
-      />
     }
   }
 </div>

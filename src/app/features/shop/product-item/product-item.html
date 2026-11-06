@@ -1,7 +1,12 @@
 <mat-card class="h-full">
   <img [src]="product()?.PictureUrl" [alt]="product()?.Name" />
   <mat-card-content class="mt-2">
-    <h2 class="text-sm font-semibold uppercase">{{ product()?.Name }}</h2>
+    <h2
+      [routerLink]="['/shop', product()?.id]"
+      class="text-sm font-semibold uppercase cursor-pointer"
+    >
+      {{ product()?.Name }}
+    </h2>
     <p class="font-light">{{ product()?.Price | currency }}</p>
   </mat-card-content>
   <mat-card-actions class="mt-auto">
