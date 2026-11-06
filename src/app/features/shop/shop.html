@@ -1,0 +1,38 @@
+<div class="flex flex-col gap-3 mb-5">
+  <div class="flex justify-end">
+    <button mat-stroked-button (click)="openFiltersDialog()">
+      <mat-icon>filter_list</mat-icon>
+      Filters
+    </button>
+  </div>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+  @if (productsResource.isLoading()) {
+    <div class="flex flex-col items-center justify-center py-16 gap-4">
+      <div
+        class="w-10 h-10 border-4 border-gray-200 border-t-indigo-600 rounded-full animate-spin"
+      ></div>
+
+      <p class="text-sm text-gray-500 font-medium"></p>
+    </div>
+  } @else if (productsResource.error()) {
+    <app-error
+      class="col-span-full"
+      title="Failed to load products"
+      message="Something went wrong while fetching products."
+      (retry)="productsResource.reload()"
+    />
+  } @else {
+    @if (productsResource.hasValue()) {
+      @for (product of productsResource.value(); track product.Name) {
+        <app-product-item [product]="product"></app-product-item>
+      }
+    } @else {
+      <app-empty-state
+        class="col-span-full"
+        title="No products found"
+        message="We couldn't find any products at the moment."
+      />
+    }
+  }
+</div>
