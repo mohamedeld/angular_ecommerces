@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/contact-us/contact-us'),
   },
   {
+    path: 'server-error',
+    loadComponent: () => import('./features/server-error/server-error'),
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found'),
   },
