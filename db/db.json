@@ -1,4 +1,10 @@
 {
+  "carts": [
+    {
+      "id": "cart-1",
+      "items": []
+    }
+  ],
   "brands": [
     { "id": 1, "name": "Angular" },
     { "id": 2, "name": "NetCore" },

@@ -30,3 +30,17 @@ export interface ContactData {
   subject: string;
   message: string;
 }
+
+export type CartType = {
+  id: string;
+  items: CartItem[];
+};
+export type CartItem = {
+  productId: number;
+  productName: string;
+  price: number;
+  quantity: number;
+  pictureUrl: string;
+  brand: string;
+  type: string;
+};
